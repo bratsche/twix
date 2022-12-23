@@ -3,9 +3,8 @@ defmodule Twix.DefaultConfig do
 
   alias Twix.ConfigUtils
 
-  def get() do
+  def class_groups() do
     [
-    class_groups: [
       # https://tailwindcss.com/docs/aspect-ratio
       aspect: %{aspect: ["auto", "square", "video", {Twix.Validate, :is_arbitrary_value}]},
 
@@ -374,7 +373,9 @@ defmodule Twix.DefaultConfig do
       },
 
       # https://tailwindcss.com/docs/list-style-type
-      "list-style-type": %{list: ["none", "disc", "decimal", {Twix.Validate, :is_arbitrary_value}]},
+      "list-style-type": %{
+        list: ["none", "disc", "decimal", {Twix.Validate, :is_arbitrary_value}]
+      },
 
       # https://tailwindcss.com/docs/list-style-position
       "list-style-position": %{list: ~w(inside outside)},
@@ -398,7 +399,9 @@ defmodule Twix.DefaultConfig do
       "text-decoration-style": %{decoration: ConfigUtils.line_styles()},
 
       # https://tailwindcss.com/docs/text-decoration-thickness
-      "text-decoration-thickness": %{decoration: ["auto", "from-font", {Twix.Validate, :is_length}]},
+      "text-decoration-thickness": %{
+        decoration: ["auto", "from-font", {Twix.Validate, :is_length}]
+      },
 
       # https://tailwindcss.com/docs/text-underline-offset
       "underline-offset": %{"underline-offset": ["auto", {Twix.Validate, :is_length}]},
@@ -701,7 +704,12 @@ defmodule Twix.DefaultConfig do
 
       # https://tailwindcss.com/docs/blur
       blur: %{
-        blur: ["", "none", {Twix.Validate, :is_tshirt_value}, {Twix.Validate, :is_arbitrary_length}]
+        blur: [
+          "",
+          "none",
+          {Twix.Validate, :is_tshirt_value},
+          {Twix.Validate, :is_arbitrary_length}
+        ]
       },
 
       # https://tailwindcss.com/docs/brightness
@@ -812,7 +820,14 @@ defmodule Twix.DefaultConfig do
 
       # https://tailwindcss.com/docs/animation
       animate: %{
-        animate: ["none", "spin", "ping", "pulse", "bounce", {Twix.Validate, :is_arbitrary_value}]
+        animate: [
+          "none",
+          "spin",
+          "ping",
+          "pulse",
+          "bounce",
+          {Twix.Validate, :is_arbitrary_value}
+        ]
       },
 
       # https://tailwindcss.com/docs/transform
@@ -837,10 +852,14 @@ defmodule Twix.DefaultConfig do
       "translate-y": %{"translate-y": [{Twix.Validate, :is_length}]},
 
       # https://tailwindcss.com/docs/skew
-      "skew-x": %{"skew-x": [{Twix.Validate, :is_integer?}, {Twix.Validate, :is_arbitrary_value}]},
+      "skew-x": %{
+        "skew-x": [{Twix.Validate, :is_integer?}, {Twix.Validate, :is_arbitrary_value}]
+      },
 
       # https://tailwindcss.com/docs/skew
-      "skew-y": %{"skew-y": [{Twix.Validate, :is_integer?}, {Twix.Validate, :is_arbitrary_value}]},
+      "skew-y": %{
+        "skew-y": [{Twix.Validate, :is_integer?}, {Twix.Validate, :is_arbitrary_value}]
+      },
 
       # https://tailwindcss.com/docs/transform-origin
       "transform-origin": %{
@@ -1002,15 +1021,20 @@ defmodule Twix.DefaultConfig do
       fill: %{fill: ConfigUtils.colors() ++ ["none"]},
 
       # https://tailwindcss.com/docs/stroke-width
-      "stroke-w": %{stroke: [{Twix.Validate, :is_length}, {Twix.Validate, :is_arbitrary_number}]},
+      "stroke-w": %{
+        stroke: [{Twix.Validate, :is_length}, {Twix.Validate, :is_arbitrary_number}]
+      },
 
       # https://tailwindcss.com/docs/stroke
       stroke: %{stroke: ConfigUtils.colors() ++ ["none"]},
 
       # https://tailwindcss.com/docs/screen-readers
       sr: ~w(sr-only not-sr-only)
-    ],
-    conflicting_class_groups: [
+    ]
+  end
+
+  def conflicting_class_groups() do
+    [
       overflow: ~w(overflow-x overflow-y),
       overscroll: ~w(overscroll-x overscroll-y),
       inset: ~w(inset-x inset-y top right bottom left),
@@ -1052,7 +1076,6 @@ defmodule Twix.DefaultConfig do
       "scroll-p": ~w(scroll-px scroll-py scroll-pt scroll-pr scroll-pb scroll-pl),
       "scroll-px": ~w(scroll-pr scroll-pl),
       "scroll-py": ~w(scroll-pt scroll-pb)
-    ]
     ]
   end
 end

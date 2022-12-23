@@ -1,4 +1,6 @@
 defmodule Twix.Generator do
+  alias Twix.DefaultConfig
+
   def split_class(class) do
     Regex.split(~r/-(?![^[]*?\])/, class)
   end
@@ -114,7 +116,7 @@ defmodule Twix.Generator do
 
   defmacro __before_compile__(_env) do
     validation_mapping =
-      Application.get_env(:twix, :class_groups)
+      DefaultConfig.class_groups()
       |> Enum.filter(&has_validator?/1)
       |> Enum.map(fn {group_id, group} -> build_validator_mapping(group_id, group) end)
       |> List.flatten()
@@ -178,7 +180,7 @@ defmodule Twix.Generator do
       end
 
     groups =
-      for {group_id, group} <- Application.get_env(:twix, :class_groups) do
+      for {group_id, group} <- DefaultConfig.class_groups() do
         generate_lookups(group_id, group)
       end
 

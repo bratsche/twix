@@ -1,4 +1,5 @@
 defmodule Twix do
+  alias Twix.DefaultConfig
   alias Twix.Mapping
 
   def tw(classes) when is_list(classes) do
@@ -54,6 +55,6 @@ defmodule Twix do
   end
 
   defp get_conflicting_class_group_ids(class) do
-    Application.get_env(:twix, :conflicting_class_groups)[class] || []
+    DefaultConfig.conflicting_class_groups()[class] || []
   end
 end

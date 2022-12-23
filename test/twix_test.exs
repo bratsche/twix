@@ -12,8 +12,15 @@ defmodule TwixTest do
   end
 
   test "passing classes as a list" do
-    assert tw(["container bg-fixed", "bg-clip-padding fixed", "bg-gray-500", "hover:bg-red-250", "container static bg-clip-border", "bg-scroll"])
-      == "bg-gray-500 hover:bg-red-250 container static bg-clip-border bg-scroll"
+    assert tw([
+             "container bg-fixed",
+             "bg-clip-padding fixed",
+             "bg-gray-500",
+             "hover:bg-red-250",
+             "container static bg-clip-border",
+             "bg-scroll"
+           ]) ==
+             "bg-gray-500 hover:bg-red-250 container static bg-clip-border bg-scroll"
   end
 
   test "modifiers" do
