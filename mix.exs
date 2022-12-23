@@ -2,6 +2,8 @@ defmodule Twix.MixProject do
   alias Twix.DefaultConfig
   use Mix.Project
 
+  Code.require_file("default_config.exs", "config")
+
   @version "0.1.0"
   @description "Tailwind class merging in Elixir"
 
