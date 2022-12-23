@@ -1,4 +1,5 @@
 defmodule Twix.MixProject do
+  alias Twix.DefaultConfig
   use Mix.Project
 
   @version "0.1.0"
@@ -21,6 +22,7 @@ defmodule Twix.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application() do
     [
+      env: DefaultConfig.get()
     ]
   end
 
