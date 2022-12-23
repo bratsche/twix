@@ -66,7 +66,7 @@ list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:twix, "~> 0.1.0"}
+    {:twix, "~> 0.2.0"}
   ]
 end
 ```
