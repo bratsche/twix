@@ -23,6 +23,11 @@ defmodule TwixTest do
              "bg-gray-500 hover:bg-red-250 container static bg-clip-border bg-scroll"
   end
 
+  test "unknown classes should just fall through as-is" do
+    assert tw("container bg-gray-500 bg-red-300 asdf-300 foobar") ==
+             "container bg-red-300 asdf-300 foobar"
+  end
+
   test "modifiers" do
     assert tw("focus-within:inline focus-within:block") == "focus-within:block"
   end

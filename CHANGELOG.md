@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.1
+
+  - Unknown classes fall through as-is.
+
 ## 0.3.0
 
   - More config changes.
