@@ -1,6 +1,4 @@
 defmodule Twix.DefaultConfig do
-  Code.eval_file("config_utils.exs", "config")
-
   alias Twix.ConfigUtils
 
   def class_groups() do
