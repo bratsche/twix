@@ -50,8 +50,13 @@ defmodule Twix do
   end
 
   defp get_conflicting_class_group_ids(class) when is_binary(class) do
-    String.to_existing_atom(class)
-    |> get_conflicting_class_group_ids()
+    try do
+      String.to_existing_atom(class)
+      |> get_conflicting_class_group_ids()
+    rescue
+      _e in ArgumentError ->
+        [class]
+    end
   end
 
   defp get_conflicting_class_group_ids(class) do
