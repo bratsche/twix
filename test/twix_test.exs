@@ -24,7 +24,8 @@ defmodule TwixTest do
   end
 
   test "unknown classes should just fall through as-is" do
-    assert tw("container bg-gray-500 bg-red-300 asdf-300 foobar") == "container bg-red-300 asdf-300 foobar"
+    assert tw("container bg-gray-500 bg-red-300 asdf-300 foobar") ==
+             "container bg-red-300 asdf-300 foobar"
   end
 
   test "modifiers" do
