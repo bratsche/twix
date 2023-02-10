@@ -522,6 +522,11 @@ defmodule TwixTest do
     assert tw("bg-none bg-gradient-to-t bg-gradient-to-tr") == "bg-gradient-to-tr"
   end
 
+  test "color opacity" do
+    assert tw("bg-green-900/50 bg-red-500/50") == "bg-red-500/50"
+    assert tw("text-green-900/50 text-red-500/50") == "text-red-500/50"
+  end
+
   test "bg-color" do
     assert tw("bg-inherit bg-current bg-transparent bg-black bg-white bg-slate-50 bg-red-200") ==
              "bg-red-200"

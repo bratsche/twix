@@ -1,6 +1,10 @@
 defmodule Twix.Validate do
   @arbitrary_regex ~r/^\[(.+)\]$/
 
+  def is_opacity?(val) do
+    Regex.match?(~r/^\d{2,3}\/\d{1,3}$/, val)
+  end
+
   def is_integer?(val) do
     case Integer.parse(val) do
       {_num, ""} -> true
