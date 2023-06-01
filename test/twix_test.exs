@@ -738,6 +738,10 @@ defmodule TwixTest do
     assert tw("shadow-blue-300 shadow-red-300") == "shadow-red-300"
   end
 
+  test "arbitrary shadow" do
+    assert tw("shadow-md shadow-[0_15px_5px_blue]") == "shadow-[0_15px_5px_blue]"
+  end
+
   test "opacity" do
     assert tw("bg-fixed bg-opacity-50 bg-red-500 bg-opacity-70") ==
              "bg-fixed bg-red-500 bg-opacity-70"
