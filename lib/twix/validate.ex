@@ -46,6 +46,9 @@ defmodule Twix.Validate do
     end
   end
 
+  @length_pattern "\\d+(%|px|em|rem|vh|vw|pt|pc|in|cm|mm|cap|ch|ex|lh|rlh|vi|vb|vmin|vmax)"
+  @length_regex ~r/#{@length_pattern}/i
+
   def is_arbitrary_length(val) do
     case Regex.run(@arbitrary_regex, val) do
       nil ->
@@ -53,10 +56,7 @@ defmodule Twix.Validate do
 
       [_, str] ->
         String.starts_with?(str, "length:") ||
-          Regex.match?(
-            ~r/\d+(%|px|em|rem|vh|vw|pt|pc|in|cm|mm|cap|ch|ex|lh|rlh|vi|vb|vmin|vmax)/,
-            str
-          )
+          Regex.match?(@length_regex, str)
     end
   end
 
@@ -67,6 +67,21 @@ defmodule Twix.Validate do
 
       [_, str] ->
         String.starts_with?(str, "number:") || is_integer?(str) || is_float?(str)
+    end
+  end
+
+  @color_pattern "(#[0-9a-f]{3,6}|rgba\([^)]+\)|amber|black|blue|cyan|emerald|fuchsia|gray|green|indigo|lime|neutral|orange|pink|purple|red|rose|sky|slate|stone|teal|violet|white|yellow|zinc)"
+  @shadow_regex ~r/#{@length_pattern}(_+#{@length_pattern})*(#{@color_pattern})?/i
+
+  def is_arbitrary_shadow(val) do
+    case Regex.run(@arbitrary_regex, val) do
+      nil ->
+        false
+
+      [_, shadows] ->
+        shadows
+        |> String.split(~r/,_*/)
+        |> Enum.all?(&Regex.match?(@shadow_regex, &1))
     end
   end
 
