@@ -58,6 +58,14 @@ with the `hover` variant will remain while all previous ones are dropped.
 
 Now we have a red button, as we intended!
 
+#### Using Custom Colors
+
+If you are defining custom colors in you tailwind.config.js file, you can extend the colors that Twix will recognize by adding the following to your config.exs file:
+```elixir
+config :twix, colors: ["my_first_custom_color", "my_second_custom_color", "etc"]
+``
+```
+
 ## Installation
 
 This package can be installed by adding `twix` to your
