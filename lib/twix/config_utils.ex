@@ -46,6 +46,19 @@ defmodule Twix.ConfigUtils do
         pink: [{Twix.Validate, :is_integer?}, {Twix.Validate, :is_opacity?}],
         rose: [{Twix.Validate, :is_integer?}, {Twix.Validate, :is_opacity?}]
       }
+      |> extend(Application.get_env(:twix, :colors))
     ]
+  end
+
+  defp extend(color_map, nil), do: color_map
+
+  defp extend(color_map, config) do
+    config
+    |> Enum.reduce(color_map, fn color, acc ->
+      Map.put(acc, String.to_atom(color), [
+        {Twix.Validate, :is_integer?},
+        {Twix.Validate, :is_opacity?}
+      ])
+    end)
   end
 end
